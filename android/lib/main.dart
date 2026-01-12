@@ -4,6 +4,10 @@ void main() {
   runApp(const MyApp());
 }
 
+@override
+void dispose() {
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
                       children: [
                         // Email input
                         TextField(
+                          // controller: emailContoller,
                           decoration: InputDecoration(
                             labelText: 'Enter your Email',
                             border: OutlineInputBorder(),
