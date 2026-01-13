@@ -1,97 +1,61 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+
+class FormScreen extends StatefulWidget {
+  const FormScreen({super.key});
+
+  @override
+  State<FormScreen> createState() => _FormScreenState();
 }
 
-@override
-void dispose() {
-}
+class _FormScreenState extends State<FormScreen> {
+  final _formKey = GlobalKey<FormState>();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String submittedName = '';
+  String submittedEmail = '';
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Stack(
+    return Scaffold(
+      appBar: AppBar(title: const Text('Show Form Data')),
+      body: Center(
+        // padding: const EdgeInsets.all(16),
+        child: Column(
           children: [
-            // Centered login form
-            Center(
+            Form(
+              key: _formKey,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    "Login here",
-                    style: TextStyle(fontSize: 30, color: Colors.blue),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: 'Name'),
+                    onSaved: (value) {
+                      submittedName = value!;
+                    },
                   ),
-                  const SizedBox(height: 50),
-                  SizedBox(
-                    width: 300,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // Email input
-                        TextField(
-                          // controller: emailContoller,
-                          decoration: InputDecoration(
-                            labelText: 'Enter your Email',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-
-                        // Password input
-                        TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: 'Enter your Password',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-
-                        // Login button
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                            backgroundColor: Colors.blue,
-                          ),
-                          onPressed: () {
-                            print("Login pressed");
-                          },
-                          child: const Text(
-                            "Login",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
+                  TextFormField(
+                    decoration: const InputDecoration(labelText: 'Email'),
+                    onSaved: (value) {
+                      submittedEmail = value!;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState!.save();
+                      setState(() {});
+                    },
+                    child: const Text('Submit'),
                   ),
                 ],
               ),
             ),
 
-            // Forget Password link at left-center
-            Align(
-              alignment: Alignment.centerLeft, // left and vertically centered
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: GestureDetector(
-                  onTap: () {
-                    print("Forget Password clicked");
-                  },
-                  child: const Text(
-                    "Forget Password",
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            const SizedBox(height: 30),
+
+            Text('Name: $submittedName',
+                style: const TextStyle(fontSize: 18)),
+            Text('Email: $submittedEmail',
+                style: const TextStyle(fontSize: 18)),
           ],
         ),
       ),
