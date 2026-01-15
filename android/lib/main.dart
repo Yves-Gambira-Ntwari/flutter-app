@@ -72,23 +72,50 @@ class MyApp extends StatelessWidget {
                               name = value!;
                             },
                           ),
+
                           const SizedBox(height: 30),
 
                           // Login button
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(double.infinity, 50),
-                              backgroundColor: Colors.blue,
-                            ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                _formKey.currentState!.save();
-                                print(name);
-                              }
-                            },
-                            child: Text(
-                              "Login",
-                              style: TextStyle(color: Colors.white),
+                          Material(
+                            borderRadius: BorderRadius.circular(40),
+                            child: Ink(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color.fromARGB(255, 50, 123, 168),
+                                    Color.fromARGB(255, 103, 180, 228),
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.blue,
+                                    blurRadius: 40,
+                                    offset: Offset(0, 50),
+                                  ),
+                                ],
+                              ),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(40),
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    _formKey.currentState!.save();
+                                    print(name);
+                                  }
+                                },
+                                child: const SizedBox(
+                                  height: 50,
+                                  width: double.infinity,
+                                  child: Center(
+                                    child: Text(
+                                      "Login",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
