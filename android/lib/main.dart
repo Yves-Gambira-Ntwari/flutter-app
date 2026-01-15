@@ -29,7 +29,11 @@ class MyApp extends StatelessWidget {
                 children: [
                   const Text(
                     "Login here",
-                    style: TextStyle(fontSize: 30, color: Colors.blue),
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Color.fromARGB(255, 65, 157, 233),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   const SizedBox(height: 50),
                   SizedBox(
@@ -39,79 +43,114 @@ class MyApp extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // Email input
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: "Enter your Email",
-                              border: OutlineInputBorder(),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(5),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.5),
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'This field is required';
-                              }
-                              return null;
-                            },
+                            child: // Email input
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: "Enter your Email", 
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'This field is required';
+                                }
+                                return null;
+                              },
+                            ),
                           ),
                           const SizedBox(height: 30),
 
                           // Password input
-                          TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'Enter your Password',
-                              border: OutlineInputBorder(),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.5),
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'This field is required';
-                              }
+                            child: TextFormField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: 'Enter your Password',
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'This field is required';
+                                }
 
-                              return null;
-                            },
-                            onSaved: (value) {
-                              name = value!;
-                            },
+                                return null;
+                              },
+                              onSaved: (value) {
+                                name = value!;
+                              },
+                            ),
                           ),
 
                           const SizedBox(height: 30),
 
                           // Login button
-                          Material(
-                            borderRadius: BorderRadius.circular(40),
-                            child: Ink(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(255, 50, 123, 168),
-                                    Color.fromARGB(255, 103, 180, 228),
-                                  ],
-                                  begin: Alignment.centerLeft,
-                                  end: Alignment.centerRight,
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.blue,
-                                    blurRadius: 40,
-                                    offset: Offset(0, 50),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 50),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(40),
+                              child: Ink(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color.fromARGB(255, 50, 123, 168),
+                                      Color.fromARGB(255, 103, 180, 228),
+                                    ],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
                                   ),
-                                ],
-                              ),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(40),
-                                onTap: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    _formKey.currentState!.save();
-                                    print(name);
-                                  }
-                                },
-                                child: const SizedBox(
-                                  height: 50,
-                                  width: double.infinity,
-                                  child: Center(
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(color: Colors.white),
+
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.blue.withOpacity(0.4),
+                                      blurRadius: 40,
+                                      offset: Offset(0, 10),
+                                    ),
+                                  ],
+                                ),
+
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(40),
+                                  onTap: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      _formKey.currentState!.save();
+                                      print(name);
+                                    }
+                                  },
+                                  child: const SizedBox(
+                                    height: 50,
+                                    width: double.infinity,
+                                    child: Center(
+                                      child: Text(
+                                        "Login",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     ),
                                   ),
                                 ),
