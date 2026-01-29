@@ -9,45 +9,75 @@ class HomePage extends StatelessWidget {
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(
-              flex: 1,
-              child: Text(
-                "Better",
-                style: TextStyle(
-                  color: Color.fromARGB(218, 209, 54, 54),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: ElevatedButton(
-                onPressed: () => {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(218, 209, 54, 54),
-                ),
-                child: const Text(
-                  "Apply now",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 16,
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    "Better",
+                    style: TextStyle(
+                      color: Color.fromARGB(218, 209, 54, 54),
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
+                Expanded(
+                  flex: 2,
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(218, 209, 54, 54),
+                    ),
+                    child: const Text(
+                      "Apply now",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  flex: 1,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.menu,
+                      color: const Color.fromARGB(218, 209, 54, 54),
+                      size: 30,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Expanded(
-              flex: 1,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Icon(
-                  Icons.menu,
-                  color: const Color.fromARGB(218, 209, 54, 54),
-                  size: 30,
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.only(top: 50),
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+
+                  children: [
+                    TextSpan(text: "Changing the finance for the "),
+                    TextSpan(
+                      text: "better",
+                      style: TextStyle(color: Color.fromARGB(218, 209, 54, 54)),
+                    ),
+                  ],
                 ),
               ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              child: Text("Fast Smart Fair"),
             ),
           ],
         ),
