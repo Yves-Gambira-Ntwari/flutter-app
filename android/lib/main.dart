@@ -1,62 +1,135 @@
 import 'package:flutter/material.dart';
+import 'package:android/home_page.dart';
 
-
-class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
-
-  @override
-  State<FormScreen> createState() => _FormScreenState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _FormScreenState extends State<FormScreen> {
+/// ROOT APP
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(), // ✅ Navigator starts here
+    );
+  }
+}
+
+/// LOGIN PAGE
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String submittedName = '';
-  String submittedEmail = '';
+  String email = '';
+  String password = '';
+  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Show Form Data')),
       body: Center(
-        // padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Name'),
-                    onSaved: (value) {
-                      submittedName = value!;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Email'),
-                    onSaved: (value) {
-                      submittedEmail = value!;
-                    },
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      _formKey.currentState!.save();
-                      setState(() {});
-                    },
-                    child: const Text('Submit'),
-                  ),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "Login here",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 65, 157, 233),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 40),
 
-            Text('Name: $submittedName',
-                style: const TextStyle(fontSize: 18)),
-            Text('Email: $submittedEmail',
-                style: const TextStyle(fontSize: 18)),
-          ],
+              SizedBox(
+                width: 300,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+
+                      /// EMAIL
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: "Enter your Email",
+                        ),
+                        validator: (value) =>
+                            value == null || value.isEmpty
+                                ? 'This field is required'
+                                : null,
+                        onSaved: (value) => email = value!,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      /// PASSWORD
+                      TextFormField(
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          labelText: "Enter your Password",
+                        ),
+                        validator: (value) =>
+                            value == null || value.isEmpty
+                                ? 'This field is required'
+                                : null,
+                        onSaved: (value) => password = value!,
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      /// REMEMBER ME
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: rememberMe,
+                            onChanged: (value) {
+                              setState(() {
+                                rememberMe = value!;
+                              });
+                            },
+                          ),
+                          const Text("Remember Me"),
+                        ],
+                      ),
+
+                      const SizedBox(height: 30),
+
+                      /// LOGIN BUTTON
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _formKey.currentState!.save();
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const HomePage(),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text("Login"),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
