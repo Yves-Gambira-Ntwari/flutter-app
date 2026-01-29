@@ -30,6 +30,9 @@ class HomePage extends StatelessWidget {
                     onPressed: () => {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(218, 209, 54, 54),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                     ),
                     child: const Text(
                       "Apply now",
@@ -75,9 +78,40 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 25),
             Container(
               alignment: Alignment.centerLeft,
-              child: Text("Fast Smart Fair"),
+              child: Text(
+                "Fast Smart Fair",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(228, 67, 66, 66),
+                ),
+              ),
+            ),
+            const SizedBox(height: 35),
+            SizedBox(
+              width: double.infinity, // makes the button full width
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(218, 209, 54, 54),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5), // adjust corners
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ), // button height
+                ),
+                child: const Text(
+                  "Apply Now",
+                  style: TextStyle(
+                    color: Color.fromARGB(218, 255, 255, 255),
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
