@@ -1,7 +1,21 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+  final List<String> carImages = [
+    'images/1469933-car-967387_1280.png',
+    'images/tesla.png',
+    'images/ferrari.png',
+    // add more images here
+  ];
+
+  final List<String> carNames = [
+    'Dodge',
+    'Tesla',
+    'Ferrari',
+    // names corresponding to images
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,10 +131,23 @@ class HomePage extends StatelessWidget {
             SizedBox(
               child: Text("Check Car Updates", style: TextStyle(fontSize: 20)),
             ),
-            Container(),
+            const SizedBox(height: 50),
 
+            Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/1469933-car-967387_1280.png"),
+                  fit: BoxFit.contain,
+                ),
+              ),
+              child: Text(
+                "Dodge",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
-  
         ),
       ),
     );
