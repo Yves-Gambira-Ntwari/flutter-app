@@ -113,7 +113,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
+            SizedBox(
+              child: Text("Check Car Updates", style: TextStyle(fontSize: 20)),
+            ),
+            Container(),
+
           ],
+  
         ),
       ),
     );
