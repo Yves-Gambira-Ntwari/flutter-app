@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; // <-- add this
+import 'dart:convert'; // <-- add this
 import 'package:android/home_page.dart';
 
 void main() {
@@ -32,6 +34,35 @@ class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
   bool rememberMe = false;
+
+  Future<void> _login() async {
+    try {
+      final response = await http.post(
+        Uri.parse("http://10.0.2.2:4000/login"), // Android Emulator
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({"email": email, "password": password}),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        // Example: data might contain { "token": "...", "user": {...} }
+        print("Login success: $data");
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => HomePage()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Login failed: ${response.body}")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,11 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (_) => HomePage()),
-                              );
+                              _login(); // <-- call backend
                             }
                           },
                           child: const Text("Login"),
