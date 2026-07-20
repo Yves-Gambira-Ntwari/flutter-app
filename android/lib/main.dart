@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(), // ✅ Navigator starts here
+      home: LoginPage(),
     );
   }
 }
@@ -58,16 +58,14 @@ class _LoginPageState extends State<LoginPage> {
                   key: _formKey,
                   child: Column(
                     children: [
-
                       /// EMAIL
                       TextFormField(
                         decoration: const InputDecoration(
                           labelText: "Enter your Email",
                         ),
-                        validator: (value) =>
-                            value == null || value.isEmpty
-                                ? 'This field is required'
-                                : null,
+                        validator: (value) => value == null || value.isEmpty
+                            ? 'This field is required'
+                            : null,
                         onSaved: (value) => email = value!,
                       ),
 
@@ -79,10 +77,9 @@ class _LoginPageState extends State<LoginPage> {
                         decoration: const InputDecoration(
                           labelText: "Enter your Password",
                         ),
-                        validator: (value) =>
-                            value == null || value.isEmpty
-                                ? 'This field is required'
-                                : null,
+                        validator: (value) => value == null || value.isEmpty
+                            ? 'This field is required'
+                            : null,
                         onSaved: (value) => password = value!,
                       ),
 
@@ -115,9 +112,7 @@ class _LoginPageState extends State<LoginPage> {
 
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (_) =>  HomePage(),
-                                ),
+                                MaterialPageRoute(builder: (_) => HomePage()),
                               );
                             }
                           },
