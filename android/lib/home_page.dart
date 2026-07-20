@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:android/apply_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -41,7 +42,12 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: ElevatedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => ApplyPage()),
+                      ),
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(218, 209, 54, 54),
                       shape: RoundedRectangleBorder(
